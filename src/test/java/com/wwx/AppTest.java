@@ -29,7 +29,7 @@ public class AppTest
 //        Book s = smBookSearch.getBook("斗罗大陆");
 //        System.out.println(s);
 
-        DefaultBook defaultBook = new DefaultBook(new SmBookSearch(), "圣墟");
+        DefaultBook defaultBook = new DefaultBook(new SmBookSearch(), "斗罗大陆");
         System.out.println(defaultBook.getBook());
         System.out.println(defaultBook.getChapters().size());
 
@@ -39,6 +39,12 @@ public class AppTest
     public void enTest(){
         StyleParse anEnum = StyleParse.getEnum("https://www.siluke.tw/ny10487/");
         System.out.println(anEnum);
+    }
+
+    @Test
+    public  void  DefatTest(){
+        DefaultBook defaultBook = new DefaultBook();
+        defaultBook.getBook("http://www.x23su.com/book/49/49648/");
     }
 
 

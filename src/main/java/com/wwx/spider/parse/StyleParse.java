@@ -7,7 +7,9 @@ public enum StyleParse {
 
     SILUKE("siluke"),
 
-    X23SU("x23su");
+    X23SU("x23su"),
+
+    BIQUGE("biquge");
 
     private String url;
     StyleParse(String url) {

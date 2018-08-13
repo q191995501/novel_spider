@@ -13,6 +13,7 @@ public class ParseFactory {
         switch (styleParse){
             case SILUKE:
             case X23SU:
+            case BIQUGE:
                 return new BiqugeStyleParse();
        }
 

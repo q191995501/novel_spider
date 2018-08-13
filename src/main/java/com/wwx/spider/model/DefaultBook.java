@@ -1,10 +1,8 @@
 package com.wwx.spider.model;
 
 import com.wwx.spider.parse.NovelParse;
-import com.wwx.spider.parse.ParseFactory;
 import com.wwx.spider.parse.StyleParse;
 import com.wwx.spider.search.Search;
-import com.wwx.spider.utils.BaseUtil;
 
 import java.util.List;
 
@@ -21,14 +19,17 @@ public class DefaultBook extends Book implements IBook{
     private List<Chapter> chapters;
 
     public List<Chapter> getChapters() {
-        StyleParse anEnum = StyleParse.getEnum(this.getPutoUrl());
-        NovelParse parse = ParseFactory.getParse(anEnum);
-        this.chapters=parse.getChapters(this.getPutoUrl());
+
+        this.chapters=getParse(StyleParse.getEnum(this.getPutoUrl())).getChapters(this.getPutoUrl());
         return chapters;
     }
 
     public void setChapters(List<Chapter> chapters) {
         this.chapters = chapters;
+    }
+
+    public DefaultBook() {
+        super();
     }
 
     public DefaultBook(Search search, String name) {
@@ -44,7 +45,7 @@ public class DefaultBook extends Book implements IBook{
 
         this.setAuto(book.getAuto());
         this.setSource(book.getSource());
-        this.setSentiment(book.getSentiment());
+        this.setHeat(book.getHeat());
         this.setType(book.getType());
         this.setPutoUrl(book.getPutoUrl());
         this.setCover(book.getCover());
@@ -54,6 +55,13 @@ public class DefaultBook extends Book implements IBook{
         this.setSubmitTime(book.getSubmitTime());
 
         return this;
+    }
+
+    @Override
+    public DefaultBook getBook(String url) {
+        NovelParse parse = getParse(StyleParse.getEnum(url));
+        parse.getBook(url);
+        return null;
     }
 
     @Override

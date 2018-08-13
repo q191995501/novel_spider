@@ -1,7 +1,7 @@
 package com.wwx.spider.search;
 
 import com.wwx.spider.model.Book;
-import com.wwx.spider.pipeline.BookPipeline;
+import com.wwx.spider.pipeline.sm.SmBookPipeline;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -31,10 +31,10 @@ public class SmBookSearch implements Search,PageProcessor {
 
     @Override
     public Book getBook(String name) {
-        BookPipeline bookPipeline = new BookPipeline();
+        SmBookPipeline smBookPipeline = new SmBookPipeline();
 //        BasicConfigurator.configure();
-        Spider.create(this).addUrl("https://m.sm.cn/s?q="+name).addPipeline(bookPipeline).thread(1).run();
-        return bookPipeline.get();
+        Spider.create(this).addUrl("https://m.sm.cn/s?q="+name).addPipeline(smBookPipeline).thread(1).run();
+        return smBookPipeline.get();
     }
 
 
@@ -59,7 +59,7 @@ public class SmBookSearch implements Search,PageProcessor {
         Book book = new Book();
         book.setAuto(author);
         book.setSource(sourcs);
-        book.setSentiment(type.get(2));
+        book.setHeat(type.get(2));
         book.setType(type.get(1));
         book.setPutoUrl(url);
         book.setCover(img);

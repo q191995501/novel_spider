@@ -1,5 +1,9 @@
 package com.wwx.spider.model;
 
+import com.wwx.spider.parse.NovelParse;
+import com.wwx.spider.parse.ParseFactory;
+import com.wwx.spider.parse.StyleParse;
+
 /**
  * @Author: Wyndem
  * @Description: 小说类
@@ -8,26 +12,36 @@ package com.wwx.spider.model;
  */
 public class Book{
 
-
+    //书名
     private String name;
 
+    //类型
     private String type;
 
-    private String sentiment;
+    //热度
+    private String heat;
 
+    //来源
     private String source;
 
+    //作者
     private String auto;
 
+    //小说目标也
     private String putoUrl;
 
+    //封面图片地址
     private String cover;
 
+    //简介
     private String introduce;
 
+    //最后一章
     private String submitChapter;
 
+    //最后更新时间
     private String submitTime;
+
 
     public String getSource() {
         return source;
@@ -79,12 +93,12 @@ public class Book{
         this.type = type;
     }
 
-    public String getSentiment() {
-        return sentiment;
+    public String getHeat() {
+        return heat;
     }
 
-    public void setSentiment(String sentiment) {
-        this.sentiment = sentiment;
+    public void setHeat(String heat) {
+        this.heat = heat;
     }
 
     public String getAuto() {
@@ -111,12 +125,17 @@ public class Book{
         this.cover = cover;
     }
 
+    public NovelParse getParse(StyleParse anEnum) {
+        return ParseFactory.getParse(anEnum);
+    }
+
+
     @Override
     public String toString() {
         return "Book{" +
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
-                ", sentiment='" + sentiment + '\'' +
+                ", heat='" + heat + '\'' +
                 ", source='" + source + '\'' +
                 ", auto='" + auto + '\'' +
                 ", putoUrl='" + putoUrl + '\'' +
