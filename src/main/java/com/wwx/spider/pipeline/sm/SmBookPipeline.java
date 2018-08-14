@@ -19,20 +19,4 @@ import java.util.Map;
  */
 public class SmBookPipeline extends BookPipeline {
 
-    private List<Book> books;
-
-    public SmBookPipeline() {
-        this.books = super.getBooks();
-    }
-
-    @Override
-    public void process(ResultItems resultItems, Task task) {
-        Map<String, Object> all = resultItems.getAll();
-        for (Map.Entry<String, Object> entry : all.entrySet()) {
-            if (entry.getValue() instanceof Book){
-                books.add((Book) entry.getValue());
-            }
-        }
-
-    }
 }

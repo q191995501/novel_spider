@@ -16,15 +16,25 @@ import java.util.Map;
  * @Modified By:
  */
 public abstract class ChaptePipeline implements Pipeline {
-    private List<Chapter> chapters;
+    protected List<Chapter> chapters;
 
     public ChaptePipeline() {
         this.chapters=new ArrayList<>(50);
     }
 
+    @Override
+    public void process(ResultItems resultItems, Task task) {
+        Map<String, Object> all = resultItems.getAll();
+        for (Map.Entry<String, Object> entry : all.entrySet()) {
+            if (entry.getValue() instanceof Chapter){
+                chapters.add((Chapter) entry.getValue());
+            }
+        }
+
+    }
+
     public List<Chapter> getChapters() {
         return chapters;
     }
-
 
 }

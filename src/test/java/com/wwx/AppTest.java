@@ -8,6 +8,8 @@ import com.wwx.spider.parse.StyleParse;
 import com.wwx.spider.search.SmBookSearch;
 import org.junit.Test;
 
+import java.util.List;
+
 /**
  * Unit test for simple App.
  */
@@ -25,13 +27,17 @@ public class AppTest
 
     @Test
     public void smTest(){
-//        SmBookSearch smBookSearch = new SmBookSearch();
-//        Book s = smBookSearch.getBook("斗罗大陆");
+        SmBookSearch smBookSearch = new SmBookSearch();
+        List<Book> list = smBookSearch.getBooks("斗破苍穹");
+        for (Book b:list)   {
+            System.out.println(b.getName());
+        }
+//        Book s = smBookSearch.getBook("斗破苍穹");
 //        System.out.println(s);
 
-        DefaultBook defaultBook = new DefaultBook(new SmBookSearch(), "斗罗大陆");
-        System.out.println(defaultBook.getBook());
-        System.out.println(defaultBook.getChapters().size());
+//        DefaultBook defaultBook = new DefaultBook(new SmBookSearch(), "斗罗大陆");
+//        System.out.println(defaultBook.getBook());
+//        System.out.println(defaultBook.getChapters().size());
 
     }
 

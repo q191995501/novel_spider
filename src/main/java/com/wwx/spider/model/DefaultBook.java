@@ -2,7 +2,7 @@ package com.wwx.spider.model;
 
 import com.wwx.spider.parse.NovelParse;
 import com.wwx.spider.parse.StyleParse;
-import com.wwx.spider.search.Search;
+import com.wwx.spider.search.AbSearch;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class DefaultBook extends Book implements IBook{
 
-    private Search search;
+    private AbSearch search;
     private String bookName;
     private List<Chapter> chapters;
 
@@ -32,7 +32,7 @@ public class DefaultBook extends Book implements IBook{
         super();
     }
 
-    public DefaultBook(Search search, String name) {
+    public DefaultBook(AbSearch search, String name) {
         this.search=search;
         this.bookName=name;
     }

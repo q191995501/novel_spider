@@ -4,6 +4,7 @@ import com.wwx.spider.model.Book;
 import com.wwx.spider.model.Chapter;
 import com.wwx.spider.pipeline.ChaptePipeline;
 import com.wwx.spider.pipeline.sm.SmChaptePipeline;
+import com.wwx.spider.tool.UA;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -32,7 +33,7 @@ public class BiqugeStyleParse implements NovelParse,PageProcessor {
         site.setRetryTimes(1);
         site.setSleepTime(100);
         site.setCycleRetryTimes(3);
-        site.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36");
+        site.setUserAgent(UA.getComputerUA());
 
     }
 

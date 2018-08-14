@@ -9,7 +9,16 @@ public enum StyleParse {
 
     X23SU("x23su"),
 
-    BIQUGE("biquge");
+    BIQUGE("biquge"),
+
+    //以下枚举并不支持，只是用来测试
+    QU("qu.la"),
+    QB5200("qb5200"),
+    ZXZW("zxzw"),
+    Xs33("33xs"),
+    DULDU("du1du"),
+    ZW("8jzw");
+
 
     private String url;
     StyleParse(String url) {

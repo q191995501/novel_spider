@@ -18,20 +18,5 @@ import java.util.Map;
  * @Modified By:
  */
 public class SmChaptePipeline extends ChaptePipeline {
-    private List<Chapter> chapters;
 
-    public SmChaptePipeline() {
-        this.chapters = super.getChapters();
-    }
-
-    @Override
-    public void process(ResultItems resultItems, Task task) {
-        Map<String, Object> all = resultItems.getAll();
-        for (Map.Entry<String, Object> entry : all.entrySet()) {
-            if (entry.getValue() instanceof Chapter){
-                chapters.add((Chapter) entry.getValue());
-            }
-        }
-
-    }
 }
