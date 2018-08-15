@@ -2,12 +2,6 @@ package com.wwx.spider.search;
 
 import com.wwx.spider.model.Book;
 import com.wwx.spider.parse.Crawl;
-import com.wwx.spider.pipeline.BookPipeline;
-import com.wwx.spider.tool.UA;
-import org.apache.log4j.BasicConfigurator;
-import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
-import us.codecraft.webmagic.processor.PageProcessor;
 
 import java.util.List;
 

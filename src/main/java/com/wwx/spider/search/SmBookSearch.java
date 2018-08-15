@@ -45,8 +45,6 @@ public class SmBookSearch extends AbSearch{
             } catch (Exception e) {
             }
         }
-
-
     }
 
 

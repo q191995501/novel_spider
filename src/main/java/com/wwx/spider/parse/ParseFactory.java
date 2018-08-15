@@ -1,6 +1,6 @@
 package com.wwx.spider.parse;
 
-import com.wwx.spider.parse.biquge.BiqugeStyleParse;
+import com.wwx.spider.parse.biquge.Biquge5200Parse;
 
 /**
  * @Author: Wyndem
@@ -13,11 +13,8 @@ public class ParseFactory {
     public static NovelParse getParse(BookParse styleParse){
 
         switch (styleParse){
-            case SILUKE:
-            case X23SU:
             case BIQUGE:
-            case BOOKTEXT:
-                return new BiqugeStyleParse();
+                return new Biquge5200Parse();
        }
 
        throw new RuntimeException("暂时不支持解析该站点");

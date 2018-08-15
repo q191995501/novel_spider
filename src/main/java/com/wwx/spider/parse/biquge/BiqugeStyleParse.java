@@ -16,7 +16,7 @@ import java.util.List;
  * @Date: Created in  2018-08-12 16:08
  * @Modified By:
  */
-public  class BiqugeStyleParse extends AbstractBookParse {
+public  abstract class  BiqugeStyleParse extends AbstractBookParse {
 
 
     private Html html;
