@@ -2,7 +2,9 @@ package com.wwx.spider.model;
 
 import com.wwx.spider.parse.NovelParse;
 import com.wwx.spider.parse.ParseFactory;
-import com.wwx.spider.parse.StyleParse;
+import com.wwx.spider.parse.BookParse;
+
+import java.util.List;
 
 /**
  * @Author: Wyndem
@@ -42,6 +44,17 @@ public class Book{
     //最后更新时间
     private String submitTime;
 
+    //章节
+    private List<Chapter> chapters;
+
+
+    public List<Chapter> getChapters() {
+        return chapters;
+    }
+
+    public void setChapters(List<Chapter> chapters) {
+        this.chapters = chapters;
+    }
 
     public String getSource() {
         return source;
@@ -125,7 +138,7 @@ public class Book{
         this.cover = cover;
     }
 
-    public NovelParse getParse(StyleParse anEnum) {
+    public NovelParse getParse(BookParse anEnum) {
         return ParseFactory.getParse(anEnum);
     }
 

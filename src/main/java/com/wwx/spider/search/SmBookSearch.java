@@ -1,18 +1,13 @@
 package com.wwx.spider.search;
 
 import com.wwx.spider.model.Book;
-import com.wwx.spider.parse.StyleParse;
-import com.wwx.spider.pipeline.sm.SmBookPipeline;
+import com.wwx.spider.parse.BookParse;
+import com.wwx.spider.parse.context.ParseContext;
 import com.wwx.spider.tool.UA;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
-import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Html;
-import us.codecraft.webmagic.selector.Selectable;
 
 import java.util.List;
 
@@ -27,35 +22,29 @@ public class SmBookSearch extends AbSearch{
 
 
     public SmBookSearch(){
-        super(new SmBookPipeline());
-        site.setUserAgent(UA.getPhoneUA());
+        getSite().setUserAgent(UA.getPhoneUA());
     }
 
 
-    /**
-     * 这里是webmagic框架的API。具体用法
-     * http://webmagic.io/docs/zh/posts/ch4-basic-page-processor/pageprocessor.html
-     * @param page
-     */
-    @Override
-    public void process(Page page) {
+
+    public void process(ParseContext parseContext){
+        Page page = parseContext.getPage();
         Html html = page.getHtml();
         Book veryBook = getVeryBook(html);
-        page.putField("book",veryBook);
+        parseContext.setData(veryBook);
 
-
+        List<Book> dataList = parseContext.getDataList();
         List<String> all = html.xpath("//a[@class='c-header-inner c-flex-1']").links().all();
         Document document = html.getDocument();
 
         for (String link : all){
             try {
-                StyleParse.getEnum(link);
+                BookParse.getEnum(link);
                 Book book = getBook(document, link);
-                page.putField(book.getName(),book);
+                dataList.add(book);
             } catch (Exception e) {
             }
         }
-
 
 
     }
@@ -76,7 +65,7 @@ public class SmBookSearch extends AbSearch{
         Html html = Html.create(select.html());
         List<String> info = html.xpath("//span/text()").all();
         book.setAuto(info.get(1));
-        book.setSource(StyleParse.getEnum(link).toString());
+        book.setSource(BookParse.getEnum(link).toString());
         Html html1 = Html.create(doc.html());
         String submitChapter = html1.xpath("//a[@data-recoorgi="+link+"]/text()").regex("\\W+\\d+\\W+").get();
         switch (info.size()){

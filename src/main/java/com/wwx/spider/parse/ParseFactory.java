@@ -1,5 +1,7 @@
 package com.wwx.spider.parse;
 
+import com.wwx.spider.parse.biquge.BiqugeStyleParse;
+
 /**
  * @Author: Wyndem
  * @Description: 解析工厂类
@@ -8,12 +10,13 @@ package com.wwx.spider.parse;
  */
 public class ParseFactory {
 
-    public static NovelParse getParse(StyleParse styleParse){
+    public static NovelParse getParse(BookParse styleParse){
 
         switch (styleParse){
             case SILUKE:
             case X23SU:
             case BIQUGE:
+            case BOOKTEXT:
                 return new BiqugeStyleParse();
        }
 

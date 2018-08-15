@@ -1,6 +1,7 @@
 package com.wwx.spider.search;
 
 import com.wwx.spider.model.Book;
+import com.wwx.spider.parse.Crawl;
 import com.wwx.spider.pipeline.BookPipeline;
 import com.wwx.spider.tool.UA;
 import org.apache.log4j.BasicConfigurator;
@@ -12,42 +13,33 @@ import java.util.List;
 
 /**
  * 搜索引擎的基类
- * @param <T>
+ *
  */
-public abstract class AbSearch<T extends Book> implements PageProcessor  {
-
-    public Site site = Site.me();
-    private BookPipeline pipeline;
+public abstract class AbSearch extends Crawl<Book> {
 
 
-    public AbSearch(BookPipeline pipeline) {
-        this.pipeline=pipeline;
-        site.setRetryTimes(1);
-        site.setSleepTime(100);
-        site.setCycleRetryTimes(3);
-        site.setUserAgent(UA.getComputerUA());
-    }
 
     public abstract String getUrl(String name);
 
+    public  String getUrl(){
+
+        return parseContext.getUrl();
+    }
+
     public Book getBook(String name) {
-        //开启login输出
-//        BasicConfigurator.configure();
         String url = getUrl(name);
-        Spider.create(this).addUrl(url).addPipeline(pipeline).thread(1).run();
-        return pipeline.get();
+        parseContext.setUrl(url);
+        start();
+        return parseContext.getData();
     }
 
     public List<Book> getBooks(String name){
-        getBook(name);
-        return pipeline.getBooks();
+        List<Book> dataList = parseContext.getDataList();
+        dataList.add(0,getBook(name));
+        return dataList;
     }
 
 
-    @Override
-    public Site getSite() {
-        return site;
-    }
 
 
 }

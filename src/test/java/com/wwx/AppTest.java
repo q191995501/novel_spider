@@ -3,8 +3,8 @@ package com.wwx;
 import static org.junit.Assert.assertTrue;
 
 import com.wwx.spider.model.Book;
-import com.wwx.spider.model.DefaultBook;
-import com.wwx.spider.parse.StyleParse;
+import com.wwx.spider.parse.BookParse;
+import com.wwx.spider.parse.biquge.BiqugeStyleParse;
 import com.wwx.spider.search.SmBookSearch;
 import org.junit.Test;
 
@@ -21,7 +21,7 @@ public class AppTest
     @Test
     public void shouldAnswerWithTrue()
     {
-        assertTrue(true );
+        assertTrue(false );
     }
 
 
@@ -41,16 +41,26 @@ public class AppTest
 
     }
 
+
+
+
     @Test
     public void enTest(){
-        StyleParse anEnum = StyleParse.getEnum("https://www.siluke.tw/ny10487/");
+        BookParse anEnum = BookParse.getEnum("https://www.siluke.tw/ny10487/");
         System.out.println(anEnum);
     }
 
     @Test
     public  void  DefatTest(){
-        DefaultBook defaultBook = new DefaultBook();
-        defaultBook.getBook("http://www.x23su.com/book/49/49648/");
+//        DefaultBook defaultBook = new DefaultBook();
+//        Book book = defaultBook.getBook("https://www.biquge5200.cc/98_98316/");
+        BiqugeStyleParse biqugeStyleParse = new BiqugeStyleParse();
+        biqugeStyleParse.isLoddingChapters=true;
+        Book book = biqugeStyleParse.getBook("http://www.b5200.net/98_98310/");
+
+        System.out.println(book);
+        //2258
+        System.out.println(book.getChapters().size());
     }
 
 
