@@ -19,7 +19,6 @@ import java.util.List;
 public  abstract class  BiqugeStyleParse extends AbstractBookParse {
 
 
-    private Html html;
 
 
     @Override
@@ -46,37 +45,6 @@ public  abstract class  BiqugeStyleParse extends AbstractBookParse {
         chapter.setChapterName(title);
         chapter.setContent(content);
         parseContext.getDataList().add(chapter);
-    }
-
-    @Override
-    public Book parse(ParseContext parseContext) {
-        html=parseContext.getPage().getHtml();
-
-        String author = getAuto();
-        String sourcs = getSource();
-        String heat = getHeat();
-        String type = getType();
-        String putoUrl = getPutoUrl();
-        String img = getCover();
-        String bookname = getName();
-        String introduce = getIntroduce();
-        String submitChapter = getSubmitChapter();
-        String submitTime = getSubmitTime();
-
-        Book book = new Book();
-        book.setAuto(author);
-        book.setSource(sourcs);
-        book.setHeat(heat);
-        book.setType(type);
-        book.setPutoUrl(putoUrl);
-        book.setCover(img);
-        book.setName(bookname);
-        book.setIntroduce(introduce);
-        book.setSubmitChapter(submitChapter);
-        book.setSubmitTime(submitTime);
-
-        parseContext.setData(book);
-        return book;
     }
 
     @Override

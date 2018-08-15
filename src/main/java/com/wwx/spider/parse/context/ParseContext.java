@@ -6,6 +6,7 @@ import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.pipeline.ConsolePipeline;
 import us.codecraft.webmagic.pipeline.Pipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
+import us.codecraft.webmagic.selector.Html;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +22,11 @@ public class ParseContext<T> {
 
     //爬虫的相关设置
     private Site site;
+
     //爬取的url
     private String url="";
     //爬虫的线程
-    private  int threadNum=5;
+    private  int threadNum=1;
     //爬虫的保存结果处理类
     private Pipeline pipeline;
     //返回的Page对象
@@ -45,6 +47,10 @@ public class ParseContext<T> {
     private int cycleRetryTimes=3;
     //超时单位毫秒
     private int timeout=50000;
+
+    public Html getHtml() {
+        return getPage().getHtml();
+    }
 
 
     public int getRetryTimes() {

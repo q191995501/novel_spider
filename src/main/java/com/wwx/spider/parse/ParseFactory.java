@@ -10,7 +10,7 @@ import com.wwx.spider.parse.biquge.Biquge5200Parse;
  */
 public class ParseFactory {
 
-    public static NovelParse getParse(BookParse styleParse){
+    public static AbstractBookParse getParse(BookParse styleParse){
 
         switch (styleParse){
             case BIQUGE:

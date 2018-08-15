@@ -4,6 +4,7 @@ import com.wwx.spider.model.Book;
 import com.wwx.spider.model.Chapter;
 import com.wwx.spider.parse.context.ParseContext;
 import us.codecraft.webmagic.Page;
+import us.codecraft.webmagic.selector.Html;
 
 import java.util.List;
 
@@ -17,19 +18,42 @@ public abstract class AbstractBookParse extends Crawl implements NovelParse {
 
     public Boolean isLoddingChapters=false;
 
+    protected Html html;
 
     public abstract void getChapters(Page page);
     public  List<Chapter> getChapters(Book book){
         return getChapters(book.getPutoUrl());
     }
 
-    public  abstract Book parse(ParseContext parseContext);
 
     @Override
     public void process(ParseContext parseContext) {
-
+        html=parseContext.getHtml();
         if (parseContext.getData()==null){
-            parse(parseContext);
+            String author = getAuto();
+            String sourcs = getSource();
+            String heat = getHeat();
+            String type = getType();
+            String putoUrl = getPutoUrl();
+            String img = getCover();
+            String bookname = getName();
+            String introduce = getIntroduce();
+            String submitChapter = getSubmitChapter();
+            String submitTime = getSubmitTime();
+
+            Book book = new Book();
+            book.setAuto(author);
+            book.setSource(sourcs);
+            book.setHeat(heat);
+            book.setType(type);
+            book.setPutoUrl(putoUrl);
+            book.setCover(img);
+            book.setName(bookname);
+            book.setIntroduce(introduce);
+            book.setSubmitChapter(submitChapter);
+            book.setSubmitTime(submitTime);
+
+            parseContext.setData(book);
         }
 
         if (isLoddingChapters){
@@ -42,6 +66,7 @@ public abstract class AbstractBookParse extends Crawl implements NovelParse {
 
     @Override
     public List<Chapter> getChapters(String url) {
+        parseContext.setThreadNum(1);
         isLoddingChapters=true;
         Book book = getBook(url);
         isLoddingChapters=false;
